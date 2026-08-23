@@ -1,0 +1,32 @@
+[project]
+name = "fuse_core"
+authors = [{ name = "Syncflo", email = "ops@syncflo.co.za" }]
+description = "Sage Intacct connection for Fuse — gateway, credentials, module switches and the request log."
+requires-python = ">=3.10"
+readme = "README.md"
+dynamic = ["version"]
+dependencies = []
+
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+# Frappe only. Core talks to Intacct and holds the connection; it links to nothing ERPNext
+# ships, which is what lets it be the shared base for apps that do.
+[tool.bench.frappe-dependencies]
+frappe = ">=16.0.0,<17.0.0"
+
+[tool.flit.module]
+name = "fuse_core"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+# Frappe apps indent with tabs; E101/W191 fight that convention, not real defects.
+ignore = ["E101", "E501", "W191"]
+
+[tool.ruff.format]
+indent-style = "tab"

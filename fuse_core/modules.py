@@ -59,9 +59,10 @@ def sync_modules():
 	"""Make the settings table match the registry, without touching what is switched on.
 
 	Runs on every migrate. New modules arrive switched ON, because a feature that ships
-	invisible looks broken rather than optional. Retired ones are dropped, so the page never
-	lists something that no longer exists — including everything belonging to an app that
-	has been uninstalled.
+	invisible looks broken rather than optional — unless the app declares `default: 0`, which
+	is for the handful that duplicate something else on the page and are there for the client
+	who asks. Retired ones are dropped, so the page never lists something that no longer
+	exists — including everything belonging to an app that has been uninstalled.
 
 	A client's own choice is never overwritten — that is the whole point of the table.
 	"""
@@ -86,8 +87,9 @@ def sync_modules():
 				"module_key": module["key"],
 				"label": module["label"],
 				"description": module.get("description"),
-				# Present and set → keep it. Absent → new, so on.
-				"enabled": chosen.get(module["key"], 1),
+				# Present and set → keep it. Absent → new, so whatever the app asked for,
+				# which is on unless it said otherwise.
+				"enabled": chosen.get(module["key"], module.get("default", 1)),
 			},
 		)
 

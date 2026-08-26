@@ -20,6 +20,9 @@
   "transaction_mappings",
   "modules_section",
   "active_modules",
+  "support_section",
+  "support_email",
+  "support_needs_approval",
   "tuning_section",
   "page_size",
   "timeout",
@@ -173,6 +176,26 @@
    "label": "Last Sync Result",
    "read_only": 1,
    "description": "Outcome of the most recent background sync. A full sync cannot fit in a web request, so it runs on the long queue and reports here."
+  },
+  {
+   "fieldname": "support_section",
+   "fieldtype": "Section Break",
+   "label": "Support"
+  },
+  {
+   "fieldname": "support_email",
+   "fieldtype": "Data",
+   "label": "Support Email",
+   "options": "Email",
+   "default": "support@syncflo.co.za",
+   "description": "Where a support ticket raised on this site is sent. Defaults to Syncflo. A partner supporting their own clients points it at their own desk, and nothing else changes."
+  },
+  {
+   "fieldname": "support_needs_approval",
+   "fieldtype": "Check",
+   "label": "Discretionary Tickets Need Approval",
+   "default": "1",
+   "description": "On: a request for a change, an idea, training or a new user waits for someone holding the Fuse Support Approver role before it is sent. Faults never wait - something broken goes straight through, because an approver on leave must not be able to sit on a system that is down.\n\nIf nobody holds the role, the ticket is sent anyway and says so on the record. A gate nobody can open is not a control, it is a ticket that vanishes."
   }
  ],
  "issingle": 1,

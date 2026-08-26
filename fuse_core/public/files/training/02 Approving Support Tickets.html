@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Approving Support Tickets — Fuse</title>
+<style>
+:root {
+	--ink: #14202a;
+	--soft: #55636e;
+	--faint: #8a949d;
+	--rule: #e3e7ea;
+	--ground: #ffffff;
+	--panel: #f6f8f9;
+	--accent: #1a7a4c;
+	--accent-soft: #e8f3ed;
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--ink: #e8edf1;
+		--soft: #a9b4bd;
+		--faint: #7c868f;
+		--rule: #2b3640;
+		--ground: #141a20;
+		--panel: #1b232b;
+		--accent: #4cc088;
+		--accent-soft: #16302380;
+	}
+}
+* { box-sizing: border-box; }
+body {
+	margin: 0;
+	padding: 0 24px 96px;
+	background: var(--ground);
+	color: var(--ink);
+	font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+main { max-width: 46rem; margin: 0 auto; }
+header.guide {
+	max-width: 46rem;
+	margin: 0 auto;
+	padding: 40px 0 20px;
+	border-bottom: 2px solid var(--ink);
+}
+header.guide .eyebrow {
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--accent);
+	margin: 0 0 6px;
+}
+header.guide h1 { font-size: 2rem; line-height: 1.15; margin: 0; text-wrap: balance; }
+header.guide .standfirst { color: var(--soft); margin: 8px 0 0; }
+h2 {
+	font-size: 1.25rem;
+	margin: 2.4rem 0 .6rem;
+	padding-top: 1.4rem;
+	border-top: 1px solid var(--rule);
+	text-wrap: balance;
+}
+h3 { font-size: 1.02rem; margin: 1.6rem 0 .4rem; text-wrap: balance; }
+p, li { color: var(--soft); }
+li { margin: .25rem 0; }
+strong { color: var(--ink); font-weight: 600; }
+ol, ul { padding-left: 1.3rem; }
+code {
+	background: var(--panel);
+	border: 1px solid var(--rule);
+	border-radius: 4px;
+	padding: .08em .35em;
+	font-size: .88em;
+	color: var(--ink);
+}
+.table-scroll { overflow-x: auto; margin: 1rem 0; }
+table { border-collapse: collapse; width: 100%; font-size: .93rem; }
+th, td {
+	text-align: left;
+	padding: .5rem .7rem;
+	border-bottom: 1px solid var(--rule);
+	vertical-align: top;
+	color: var(--soft);
+}
+th { color: var(--ink); font-weight: 600; background: var(--panel); }
+blockquote {
+	margin: 1.2rem 0;
+	padding: .7rem 1rem;
+	border-left: 3px solid var(--accent);
+	background: var(--accent-soft);
+	border-radius: 0 6px 6px 0;
+}
+blockquote p { margin: .3rem 0; }
+figure.shot {
+	margin: 1.4rem 0;
+	padding: 1.6rem 1rem;
+	border: 1px dashed var(--rule);
+	border-radius: 8px;
+	background: var(--panel);
+	text-align: center;
+}
+figure.shot .label {
+	display: block;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	color: var(--accent);
+}
+figure.shot .what { display: block; margin-top: .3rem; color: var(--faint); font-size: .9rem; }
+footer.guide {
+	max-width: 46rem;
+	margin: 3rem auto 0;
+	padding-top: 1rem;
+	border-top: 1px solid var(--rule);
+	color: var(--faint);
+	font-size: .85rem;
+}
+@media print {
+	body { padding: 0; }
+	figure.shot { break-inside: avoid; }
+	h2 { break-after: avoid; }
+}
+</style>
+</head>
+<body>
+<header class="guide">
+	<p class="eyebrow">Fuse user guide 02</p>
+	<h1>Approving Support Tickets</h1>
+	<p class="standfirst">For whoever signs off requests on the client's side — Fuse user guide</p>
+</header>
+<main>
+<h2>Before you start</h2>
+<h3>Why there is an approval step at all</h3>
+<p>Some support requests commit somebody's time or money: a change to how the system works,
+a training session, a new user account, an idea worth costing. Your organisation may
+reasonably want a say before those are raised with support.</p>
+<p>Other requests do not wait for anybody. A fault is a fault.</p>
+<h3>What waits, and what does not</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Goes straight through</th>
+<th>Waits for you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Something is broken</td>
+<td>I need training</td>
+</tr>
+<tr>
+<td>Something looks wrong</td>
+<td>We need it to work differently</td>
+</tr>
+<tr>
+<td>Something with Intacct</td>
+<td>Nice to have</td>
+</tr>
+<tr>
+<td></td>
+<td>New user or access</td>
+</tr>
+</tbody>
+</table></div>
+<p>That split is deliberate and not adjustable per ticket. An approver on leave must never be
+able to sit on a system that is down, so faults are never held — not even briefly.</p>
+<h3>Who does this</h3>
+<p>Whoever holds the <strong>Fuse Support Approver</strong> role. Usually one or two people. An
+administrator assigns it under the user's own record; the role exists on every Fuse site
+but starts out held by nobody.</p>
+<figure class="shot"><span class="label">Screenshot 1</span><span class="what">User form, Roles section, Fuse Support Approver ticked</span></figure>
+<h3>If nobody holds the role</h3>
+<p>Nothing waits. Every ticket is sent, including the discretionary ones.</p>
+<p>That is on purpose. A gate nobody can open is not a control — it is a queue of requests
+quietly going nowhere, and the first anyone hears of it is a client asking why support
+never replied. So the gate only closes once somebody is standing at it.</p>
+<h2>Deciding on a ticket</h2>
+<h3>Finding what is waiting</h3>
+<p>When a ticket needs you, it appears in your <strong>to-do list</strong> — the same place as everything
+else assigned to you. An urgent one is marked as such.</p>
+<p>You can also open the Fuse Support Ticket list and filter on <strong>Waiting for approval</strong>.</p>
+<h3>Reading it</h3>
+<p>Open the ticket. Everything you need is on one screen:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>What you are looking at</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Subject and kind</td>
+<td>What is being asked for</td>
+</tr>
+<tr>
+<td>How urgent</td>
+<td>What the person raising it thinks, in their words</td>
+</tr>
+<tr>
+<td>What happened / What was expected</td>
+<td>The case for it</td>
+</tr>
+<tr>
+<td>Raised by, and the screen they were on</td>
+<td>Who, and where it came up</td>
+</tr>
+<tr>
+<td>Site details</td>
+<td>Version and site information, captured automatically</td>
+</tr>
+</tbody>
+</table></div>
+<p>Nothing has been sent yet. The headline at the top of the ticket says so.</p>
+<figure class="shot"><span class="label">Screenshot 2</span><span class="what">Fuse Support Ticket, Waiting for approval headline with the two buttons</span></figure>
+<h3>Approving</h3>
+<p>Click <strong>Approve and send</strong>.</p>
+<p>The ticket is emailed to your support address there and then, and stamped with your name
+and the time. The reply goes back to the person who raised it, not to you — you decided
+whether it should be asked, not what the answer is.</p>
+<h3>Declining</h3>
+<p>Click <strong>Decline</strong>, and say why.</p>
+<p>The reason is required, and it is not a formality. A request that came back declined with
+no explanation is how people learn to stop raising them — and then the first thing anyone
+hears about a real problem is when it has become a bigger one.</p>
+<p>Write the sentence you would say to their face: <em>"We are already paying for this in the
+March scope"</em>, or <em>"Let us do it after go-live"</em>. It is recorded on the ticket and the
+person who raised it is told.</p>
+<figure class="shot"><span class="label">Screenshot 3</span><span class="what">the Decline dialog with a reason typed in</span></figure>
+<h2>Common questions</h2>
+<h3>Can I edit the request before approving it?</h3>
+<p>You can edit the ticket like any other document, but think twice. What you send should be
+what they asked for. If it needs reframing, that is usually a conversation with them rather
+than a rewrite of their words.</p>
+<h3>I approved it but it says it did not send</h3>
+<p>The ticket is approved and saved; only the email failed, almost always because the site has
+no outgoing mail account set up. Tell your administrator, then use <strong>Send to support</strong> on
+the ticket. Nothing needs retyping.</p>
+<h3>Something urgent is stuck waiting for me and I am away</h3>
+<p>It should not be — a fault never waits. If a genuinely urgent thing was raised as a change
+request, decline it and ask them to raise it as a fault, or approve it and let support
+judge.</p>
+<p>If you are going to be away, the practical answer is to have the role on two people rather
+than one.</p>
+<h3>How do I turn the approval step off?</h3>
+<p>An administrator unticks <strong>Discretionary Tickets Need Approval</strong> in Intacct Settings. Every
+ticket then goes straight through.</p>
+<h3>Can I see what was approved historically?</h3>
+<p>Yes. The Fuse Support Ticket list holds everything, and each ticket carries who decided,
+when, and — where it was declined — why.</p>
+</main>
+<footer class="guide">Fuse Manufacturing — Syncflo. Printed from the Guides page.</footer>
+</body>
+</html>

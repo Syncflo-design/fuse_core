@@ -1,0 +1,237 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "naming_series:",
+ "creation": "2026-08-25 12:00:00.000000",
+ "description": "A question or a problem, raised with whoever supports this site. Recorded here and emailed to the support address set in Intacct Settings.",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "subject",
+  "column_break_head",
+  "category",
+  "urgency",
+  "detail_section",
+  "what_happened",
+  "what_expected",
+  "attachment",
+  "where_section",
+  "where_it_happened",
+  "column_break_where",
+  "raised_by",
+  "raised_on",
+  "context_section",
+  "site_context",
+  "sent_section",
+  "approved_by",
+  "approved_on",
+  "decline_reason",
+  "status",
+  "sent_to",
+  "column_break_sent",
+  "sent_on",
+  "send_error"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "FUSE-SUP-.YYYY.-",
+   "default": "FUSE-SUP-.YYYY.-",
+   "reqd": 1,
+   "hidden": 1
+  },
+  {
+   "fieldname": "subject",
+   "fieldtype": "Data",
+   "label": "Subject",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "One line. What you would say if you were phoning."
+  },
+  {
+   "fieldname": "column_break_head",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "label": "What kind of thing is it",
+   "options": "Something is broken\nSomething looks wrong\nI need training\nWe need it to work differently\nNice to have\nNew user or access\nSomething with Intacct",
+   "default": "Something is broken",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "Broken means it errors or will not go. Looks wrong means it worked but the numbers or the data are not right - a different job, and usually a more urgent one. Nice to have is an idea with nothing waiting on it, and saying so is what keeps the queue honest."
+  },
+  {
+   "fieldname": "urgency",
+   "fieldtype": "Select",
+   "label": "How urgent",
+   "options": "Whenever you can\nSoon\nBlocking work right now",
+   "default": "Soon",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "detail_section",
+   "fieldtype": "Section Break",
+   "label": "What happened"
+  },
+  {
+   "fieldname": "what_happened",
+   "fieldtype": "Small Text",
+   "label": "What happened",
+   "reqd": 1,
+   "description": "What you did, and what the screen did. If there was an error message, the exact words help more than a description of them."
+  },
+  {
+   "fieldname": "what_expected",
+   "fieldtype": "Small Text",
+   "label": "What you expected",
+   "description": "Only worth filling in where it is not obvious. It is often the line that turns a bug report into a fix."
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "Screenshot or file",
+   "description": "A screenshot of the screen as it was, more often than not."
+  },
+  {
+   "fieldname": "where_section",
+   "fieldtype": "Section Break",
+   "label": "Where and who"
+  },
+  {
+   "fieldname": "where_it_happened",
+   "fieldtype": "Data",
+   "label": "Screen",
+   "description": "Filled in from wherever you were when you opened this."
+  },
+  {
+   "fieldname": "column_break_where",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "raised_by",
+   "fieldtype": "Link",
+   "label": "Raised by",
+   "options": "User",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "raised_on",
+   "fieldtype": "Datetime",
+   "label": "Raised on",
+   "read_only": 1
+  },
+  {
+   "fieldname": "context_section",
+   "fieldtype": "Section Break",
+   "label": "Site details",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "site_context",
+   "fieldtype": "Small Text",
+   "label": "Captured automatically",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sent_section",
+   "fieldtype": "Section Break",
+   "label": "Approval and sending"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Not sent\nWaiting for approval\nDeclined\nSent\nCould not send",
+   "default": "Not sent",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "sent_to",
+   "fieldtype": "Data",
+   "label": "Sent to",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_sent",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sent_on",
+   "fieldtype": "Datetime",
+   "label": "Sent on",
+   "read_only": 1
+  },
+  {
+   "fieldname": "send_error",
+   "fieldtype": "Small Text",
+   "label": "Why it did not send",
+   "read_only": 1,
+   "depends_on": "eval:doc.status=='Could not send'"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Decided by",
+   "options": "User",
+   "read_only": 1,
+   "depends_on": "eval:['Sent','Declined'].includes(doc.status)"
+  },
+  {
+   "fieldname": "approved_on",
+   "fieldtype": "Datetime",
+   "label": "Decided on",
+   "read_only": 1,
+   "depends_on": "eval:['Sent','Declined'].includes(doc.status)"
+  },
+  {
+   "fieldname": "decline_reason",
+   "fieldtype": "Small Text",
+   "label": "Why it was declined",
+   "read_only": 1,
+   "depends_on": "eval:doc.status=='Declined'"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-08-25 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Fuse Core",
+ "name": "Fuse Support Ticket",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "write": 1,
+   "if_owner": 1
+  }
+ ],
+ "search_fields": "subject,category,status",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Logging a Support Ticket — Fuse</title>
+<style>
+:root {
+	--ink: #14202a;
+	--soft: #55636e;
+	--faint: #8a949d;
+	--rule: #e3e7ea;
+	--ground: #ffffff;
+	--panel: #f6f8f9;
+	--accent: #1a7a4c;
+	--accent-soft: #e8f3ed;
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--ink: #e8edf1;
+		--soft: #a9b4bd;
+		--faint: #7c868f;
+		--rule: #2b3640;
+		--ground: #141a20;
+		--panel: #1b232b;
+		--accent: #4cc088;
+		--accent-soft: #16302380;
+	}
+}
+* { box-sizing: border-box; }
+body {
+	margin: 0;
+	padding: 0 24px 96px;
+	background: var(--ground);
+	color: var(--ink);
+	font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+main { max-width: 46rem; margin: 0 auto; }
+header.guide {
+	max-width: 46rem;
+	margin: 0 auto;
+	padding: 40px 0 20px;
+	border-bottom: 2px solid var(--ink);
+}
+header.guide .eyebrow {
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--accent);
+	margin: 0 0 6px;
+}
+header.guide h1 { font-size: 2rem; line-height: 1.15; margin: 0; text-wrap: balance; }
+header.guide .standfirst { color: var(--soft); margin: 8px 0 0; }
+h2 {
+	font-size: 1.25rem;
+	margin: 2.4rem 0 .6rem;
+	padding-top: 1.4rem;
+	border-top: 1px solid var(--rule);
+	text-wrap: balance;
+}
+h3 { font-size: 1.02rem; margin: 1.6rem 0 .4rem; text-wrap: balance; }
+p, li { color: var(--soft); }
+li { margin: .25rem 0; }
+strong { color: var(--ink); font-weight: 600; }
+ol, ul { padding-left: 1.3rem; }
+code {
+	background: var(--panel);
+	border: 1px solid var(--rule);
+	border-radius: 4px;
+	padding: .08em .35em;
+	font-size: .88em;
+	color: var(--ink);
+}
+.table-scroll { overflow-x: auto; margin: 1rem 0; }
+table { border-collapse: collapse; width: 100%; font-size: .93rem; }
+th, td {
+	text-align: left;
+	padding: .5rem .7rem;
+	border-bottom: 1px solid var(--rule);
+	vertical-align: top;
+	color: var(--soft);
+}
+th { color: var(--ink); font-weight: 600; background: var(--panel); }
+blockquote {
+	margin: 1.2rem 0;
+	padding: .7rem 1rem;
+	border-left: 3px solid var(--accent);
+	background: var(--accent-soft);
+	border-radius: 0 6px 6px 0;
+}
+blockquote p { margin: .3rem 0; }
+figure.shot {
+	margin: 1.4rem 0;
+	padding: 1.6rem 1rem;
+	border: 1px dashed var(--rule);
+	border-radius: 8px;
+	background: var(--panel);
+	text-align: center;
+}
+figure.shot .label {
+	display: block;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	color: var(--accent);
+}
+figure.shot .what { display: block; margin-top: .3rem; color: var(--faint); font-size: .9rem; }
+footer.guide {
+	max-width: 46rem;
+	margin: 3rem auto 0;
+	padding-top: 1rem;
+	border-top: 1px solid var(--rule);
+	color: var(--faint);
+	font-size: .85rem;
+}
+@media print {
+	body { padding: 0; }
+	figure.shot { break-inside: avoid; }
+	h2 { break-after: avoid; }
+}
+</style>
+</head>
+<body>
+<header class="guide">
+	<p class="eyebrow">Fuse user guide 01</p>
+	<h1>Logging a Support Ticket</h1>
+	<p class="standfirst">Asking for help, and what happens to the request — Fuse user guide</p>
+</header>
+<main>
+<h2>Before you start</h2>
+<h3>What the ticket is for</h3>
+<p>Something is not working, or you do not know how to do something, or you can see a better
+way. All of it goes through the same button, and it lands with whoever supports your site.</p>
+<p>The ticket is <strong>recorded on your own site first, then emailed</strong>. That order matters: if the
+email cannot go out for any reason, your request still exists and says so on screen, rather
+than disappearing while you wait for a reply that was never coming.</p>
+<h3>What you do not have to explain</h3>
+<p>Fuse attaches all of this by itself:</p>
+<ul>
+<li>Which site you are on, and the address of it</li>
+<li>Who you are, and which company you were in</li>
+<li>The versions of Fuse, ERPNext and Frappe you are running</li>
+<li><strong>The screen you were on</strong> before you clicked the tile</li>
+</ul>
+<p>So there is no need to describe your setup, and no need to guess at a version number. Say
+what happened; the rest is already there.</p>
+<figure class="shot"><span class="label">Screenshot 1</span><span class="what">Fuse Home, reference row, Log a support ticket tile</span></figure>
+<h2>Raising one</h2>
+<ol>
+<li>On Fuse Home, click <strong>Log a support ticket</strong>.</li>
+<li><strong>Subject</strong> — one line. What you would say if you were phoning.</li>
+<li><strong>What kind of thing is it</strong> — see the table below. It decides who picks it up and how
+   fast, so it is worth a moment.</li>
+<li><strong>How urgent</strong> — <em>Whenever you can</em>, <em>Soon</em>, or <em>Blocking work right now</em>. Use the last
+   one when people genuinely cannot get on, and it will keep meaning something.</li>
+<li><strong>What happened</strong> — what you did, and what the screen did. If there was an error
+   message, the exact words help far more than a description of them.</li>
+<li><strong>What you expected</strong> — only where it is not obvious. It is often the line that turns a
+   bug report into a fix.</li>
+<li><strong>Screenshot or file</strong> — a picture of the screen as it was, more often than not.</li>
+<li><strong>Save</strong>.</li>
+</ol>
+<p>That is the whole thing. Saving sends it.</p>
+<figure class="shot"><span class="label">Screenshot 2</span><span class="what">Fuse Support Ticket form with subject, category and detail completed</span></figure>
+<h2>Choosing the right kind</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>Use it when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Something is broken</td>
+<td>It errors, or a screen will not do what it is supposed to</td>
+</tr>
+<tr>
+<td>Something looks wrong</td>
+<td>It worked, but the numbers or the data are not right</td>
+</tr>
+<tr>
+<td>I need training</td>
+<td>You or your team need showing how, rather than a fix</td>
+</tr>
+<tr>
+<td>We need it to work differently</td>
+<td>The system does what it was built to do, and that is not what you need</td>
+</tr>
+<tr>
+<td>Nice to have</td>
+<td>An idea. Nothing is waiting on it</td>
+</tr>
+<tr>
+<td>New user or access</td>
+<td>Somebody needs an account, a password reset, or different permissions</td>
+</tr>
+<tr>
+<td>Something with Intacct</td>
+<td>The connection, or a posting that did not reach Intacct</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Broken</strong> and <strong>looks wrong</strong> are separated on purpose. A screen that throws an error is
+loud and obvious. A quantity that quietly disagrees with Intacct is the more serious of the
+two and gets buried if both go in the same pile.</p>
+<h2>What happens next</h2>
+<h3>Faults go straight away</h3>
+<p>Anything reported as broken, looking wrong, or an Intacct problem is emailed the moment you
+save it. Nobody has to approve a fault.</p>
+<p>The reply comes back to <strong>your</strong> email address, not to a general mailbox, so you can just
+answer it.</p>
+<h3>Requests may wait for approval</h3>
+<p>If your site is set up that way, four kinds wait for somebody on your side to sign them
+off first: training, a change to how something works, a nice-to-have, and a new user or
+access request.</p>
+<p>These are the ones that commit somebody's time or money, which is why your organisation may
+want a say before they are raised.</p>
+<p>Your ticket shows <strong>Waiting for approval</strong> and nothing has been sent yet. Whoever holds the
+approver role sees it in their to-do list and either:</p>
+<ul>
+<li><strong>Approves it</strong> — it is sent, and you can see when and to whom; or</li>
+<li><strong>Declines it</strong> — it is not sent, and the reason is written on the ticket. You are told,
+  and the reason is there to read.</li>
+</ul>
+<figure class="shot"><span class="label">Screenshot 3</span><span class="what">Fuse Support Ticket showing the Waiting for approval headline</span></figure>
+<p>If nobody at your site holds the approver role, nothing waits — everything is sent. A
+request that sits behind an approval nobody can give is a request that vanishes, so it is
+deliberately not possible.</p>
+<h2>Finding your tickets again</h2>
+<p>Everything you have raised is in the Fuse Support Ticket list, with its status:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Status</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Waiting for approval</td>
+<td>With your approver. Not sent yet</td>
+</tr>
+<tr>
+<td>Sent</td>
+<td>It is with support. Look for a reply in your email</td>
+</tr>
+<tr>
+<td>Declined</td>
+<td>Your approver said no. The reason is on the ticket</td>
+</tr>
+<tr>
+<td>Could not send</td>
+<td>The site could not send the email. Nothing is lost — see below</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Common questions</h2>
+<h3>It says "Could not send"</h3>
+<p>Your site cannot send email at the moment, usually because no outgoing mail account has
+been set up on it. Your request is safe — it is saved here in full.</p>
+<p>Tell your administrator, and once mail is working use the <strong>Send to support</strong> button on the
+ticket. Nothing has to be retyped.</p>
+<h3>Who approves my requests?</h3>
+<p>Whoever your organisation gave the <strong>Fuse Support Approver</strong> role to — usually one or two
+people. If you do not know who, your administrator does.</p>
+<h3>My request was declined and I still need it</h3>
+<p>Talk to whoever declined it; their reason is on the ticket. If the situation has changed,
+raise it again and say what changed. A declined ticket is a decision at a point in time,
+not a permanent no.</p>
+<h3>Can I raise a ticket for someone else?</h3>
+<p>Yes, but the reply goes to whoever raised it. If it is really their problem, it is usually
+faster for them to raise it themselves — they can answer the questions that come back.</p>
+<h3>Where does it actually go?</h3>
+<p>To the support address set on your site. For a site supported by Syncflo that is
+support@syncflo.co.za; if you bought Fuse through a Sage partner, it goes to their desk
+instead. Either way the ticket itself shows exactly where it was sent.</p>
+</main>
+<footer class="guide">Fuse Manufacturing — Syncflo. Printed from the Guides page.</footer>
+</body>
+</html>

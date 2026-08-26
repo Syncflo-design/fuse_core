@@ -34,5 +34,40 @@ def after_install():
 			)
 			seeding[name] = "failed"
 
+	seeding["approver_role"] = _approver_role()
+
 	frappe.db.commit()
 	return seeding
+
+
+def _approver_role():
+	"""The role that signs off a discretionary support ticket.
+
+	Created empty and assigned by the client — we have no business deciding who speaks for
+	them. Until somebody holds it the approval gate stays open and tickets go straight
+	through, which is deliberate: a gate nobody can open is not a control.
+	"""
+	from fuse_core.fuse_core.doctype.fuse_support_ticket.fuse_support_ticket import APPROVER_ROLE
+
+	if frappe.db.exists("Role", APPROVER_ROLE):
+		return APPROVER_ROLE
+
+	try:
+		frappe.get_doc(
+			{
+				"doctype": "Role",
+				"role_name": APPROVER_ROLE,
+				"desk_access": 1,
+				# Not restricted to a module: the people who decide what is worth asking for
+				# are rarely the people who live in one.
+				"is_custom": 1,
+			}
+		).insert(ignore_permissions=True)
+	except Exception:
+		frappe.log_error(
+			title="Fuse Core: could not create the support approver role",
+			message=frappe.get_traceback(),
+		)
+		return "failed"
+
+	return APPROVER_ROLE

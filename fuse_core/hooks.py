@@ -11,13 +11,19 @@ app_license     = "MIT"
 after_install = "fuse_core.install.after_install"
 after_migrate = "fuse_core.install.after_install"
 
-# Core declares NO modules of its own. It owns the table on Intacct Settings; the features
-# belong to the apps that implement them, and each contributes through this hook. That is
-# what lets Manufacturing or Projects be installed and removed on their own.
+# Core owns the table on Intacct Settings and almost no features: they belong to the apps
+# that implement them, and each contributes through this hook. That is what lets
+# Manufacturing or Projects be installed and removed on their own.
 #
-# Deliberately empty rather than absent: an app reading frappe.get_hooks("fuse_modules")
-# on a site with core alone should get a list, not a surprise.
-fuse_modules = []
+# The one exception is Support. A client who licensed only one module still needs a way to
+# ask for help, so raising a ticket cannot live in a module they might not have.
+fuse_modules = ["fuse_core.support.get_modules"]
+
+# The Support tile, for the same reason. Core ships no other user-facing screen.
+fuse_tiles = ["fuse_core.support.get_tiles"]
+
+# And the guide that goes with it.
+fuse_guides = ["fuse_core.guides.get_guides"]
 
 # Same again for the Transactions table: core owns it and the definition picker, and
 # posts nothing itself. Each app declares the processes it needs mapped.

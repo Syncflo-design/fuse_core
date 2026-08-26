@@ -31,12 +31,25 @@ def get_modules():
 	return [dict(module) for module in MODULES]
 
 
+# Lucide "life-buoy", as SVG path elements. The bottom row draws its cards with a stroked
+# icon that takes its colour from the stylesheet, which an emoji cannot do — and next to two
+# cards that already do, an emoji is the one that looks wrong.
+ICON_SVG = (
+	'<circle cx="12" cy="12" r="10"></circle>'
+	'<circle cx="12" cy="12" r="4"></circle>'
+	'<path d="m4.93 4.93 4.24 4.24"></path>'
+	'<path d="m14.83 9.17 4.24-4.24"></path>'
+	'<path d="m14.83 14.83 4.24 4.24"></path>'
+	'<path d="m9.17 14.83-4.24 4.24"></path>'
+)
+
+
 def get_tiles():
 	"""The Support tile, for the theme's `fuse_tiles` hook.
 
-	On the reference row rather than in the run of actions. Raising a ticket is not part of
-	anybody's job — it is what you do when the job has stopped working — and it should be
-	findable without competing for attention with the things people came to do.
+	On the bottom row, beside the shop floor link and the guides, rather than among the
+	modules. That row is for the things that are not part of anybody's job — help, and how
+	to ask for help — and raising a ticket is what you do when the job has stopped working.
 	"""
 	return [
 		{
@@ -44,9 +57,10 @@ def get_tiles():
 			"label": "Log a support ticket",
 			"blurb": "Ask a question, or tell us something is wrong",
 			"icon": "🛟",
+			"svg": ICON_SVG,
 			"route": ["new", "Fuse Support Ticket"],
-			"group": "reference",
-			# Last on the row. It is the thing you reach for when nothing else worked.
-			"order": 200,
+			"group": "footer",
+			# After the guides. Look it up first, then ask.
+			"order": 10,
 		}
 	]
